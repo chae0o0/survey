@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import data from './Notice_data';
 
 
 function Notice(){
+
+    let [list, setList] = useState(data);
+
+
     return(
         <>
 
@@ -18,9 +23,27 @@ function Notice(){
         <div name="글들 "></div>
             <div>제목</div>
             <div>글쓴이 </div>
+
+
+        <div>
+        {
+            list.map(function(a,i){
+                return <NList list={list[i]}/>
+            })
+        }
+        </div>
         </>
     )
 }
 
+function NList(props){
+    return(
+        <>
+        <div>{props.list.id}
+            {props.list.title}
+            {props.list.date}</div>
+        </>
+    )
+}
 
 export default Notice;
